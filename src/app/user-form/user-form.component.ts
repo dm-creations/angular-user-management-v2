@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFormComponent implements OnInit {
 
+  formIn = {}
   constructor() { }
-
+  
   ngOnInit() {
+  }
+
+  runForm() {
+    console.log(this.formIn)
   }
 
 }

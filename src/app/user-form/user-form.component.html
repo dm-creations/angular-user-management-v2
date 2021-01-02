@@ -1,52 +1,54 @@
-<form>
+<form #aForm="ngForm">
   <h2>Name</h2>
   <div>
     <label for="name">Full Name</label>
-    <input name="name" placeholder="Enter your full name"/>
+    <input name="name" placeholder="Enter your full name" ngModel/>
     <span>(required)</span>
   </div>
   <div>
     <label for="username">Username</label>
-    <input name="username" placeholder="Choose a username name"/>
+    <input name="username" placeholder="Choose a username name" ngModel/>
   </div>
   <h2>Address</h2>
   <div>
     <label for="street">Street</label>
-    <input name="street"/>
+    <input name="street" ngModel/>
     <span>required</span>
   </div>
   <div>
     <label for="suite">Suite</label>
-    <input name="suite"/>
+    <input name="suite" ngModel/>
   </div>
   <div>
     <label for="city">City</label>
-    <input name="city"/>
+    <input name="city" ngModel/>
     <span>required</span>
   </div>
   <div>
     <label for="zipcode">Zip Code</label>
-    <input name="zipcode"/>
+    <input name="zipcode" ngModel/>
     <span>required</span>
   </div>
   <div>
     <label for="geo">Geo Location</label>
-    <input name="geo"/>
+    <input name="geo" ngModel/>
     <span>required</span>
   </div>
   <h2>Company</h2>
   <div>
     <label for="company">Company</label>
-    <input name="company"/>
+    <input name="company" ngModel/>
     <span>required</span>
   </div>
   <div>
     <label for="catchphrase">Catchphrase</label>
-    <input name="catchphrase"/>
+    <input name="catchphrase" ngModel/>
   </div>
   <div>
     <label for="bs">BS</label>
-    <input name="bs"/>
+    <input name="bs" ngModel/>
   </div>
-  <button type="submit">Save New User</button>
+  <button (click)="runForm()">Save New User</button>
 </form>
+
+{{ aForm.form | json }}
