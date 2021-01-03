@@ -12,10 +12,11 @@ export class UserFormComponent implements OnInit {
   TemplateUserInfo: UserInfo = {
     name: '',
     username: 'OhDear',
-    street: 'string',
+    street: '',
     suite: 'string',
-    city: 'string',
-    zipcode: 'string',
+    city: '',
+    zipcode: '',
+    company: '',
     geo: 'string',
     catchphrase: 'string',
     bs: 'string'
@@ -27,10 +28,11 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onBlur(field: NgModel) {
+  onBlur(field: NgModel,elem: any) {
     console.log("field.valid...", field.valid)
     if (field.valid === false) {
-      console.log(this.userInfo)
+      elem.className += ' field-error'
+      console.log(elem.className)
     }
   }
 

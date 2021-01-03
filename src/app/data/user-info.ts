@@ -6,6 +6,7 @@ export interface UserInfo {
   city: string,
   zipcode: string,
   geo: string,
+  company: string,
   catchphrase: string,
   bs: string
 }
