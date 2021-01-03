@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { UserInfo } from '../data/user-info';
+import { DataService } from '../data/data.service'
 
 @Component({
   selector: 'app-user-form',
@@ -10,6 +11,7 @@ import { UserInfo } from '../data/user-info';
 export class UserFormComponent implements OnInit {
 
   TemplateUserInfo: UserInfo = {
+    id: 1,
     name: '',
     username: 'OhDear',
     street: '',
@@ -23,8 +25,20 @@ export class UserFormComponent implements OnInit {
   }
 
   userInfo = this.TemplateUserInfo;
-  constructor() { }
+  constructor(private dataService: DataService) {}
   
+  testPost = {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+}
+
   ngOnInit() {
   }
 
@@ -37,7 +51,19 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log("Form is Valid... ", form.valid)
+
+    this.dataService.postForm(this.userInfo).subscribe(
+      result => console.log('success... ', result),
+      error => console.log('error... ', error)
+    );
+  }
+
+  onSubmit2(form: NgForm) {
+    console.log("Form is Valid... ", form.valid);
+    this.dataService.postForm(this.userInfo).subscribe(
+      result => console.log('success... ', result),
+      error => console.log('error... ', error)
+    );
   }
 
 }
