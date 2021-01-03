@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Pipe, PipeTransform } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
+import { UserInfo } from '../data/user-info';
 
 @Component({
   selector: 'app-user-form',
@@ -9,14 +9,33 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 })
 export class UserFormComponent implements OnInit {
 
-  formIn = {}
+  TemplateUserInfo: UserInfo = {
+    name: '',
+    username: 'OhDear',
+    street: 'string',
+    suite: 'string',
+    city: 'string',
+    zipcode: 'string',
+    geo: 'string',
+    catchphrase: 'string',
+    bs: 'string'
+  }
+
+  userInfo = this.TemplateUserInfo;
   constructor() { }
   
   ngOnInit() {
   }
 
-  runForm() {
-    console.log(this.formIn)
+  onBlur(field: NgModel) {
+    console.log("field.valid...", field.valid)
+    if (field.valid === false) {
+      console.log(this.userInfo)
+    }
+  }
+
+  onSubmit(form: NgForm) {
+    console.log("Form is Valid... ", form.valid)
   }
 
 }

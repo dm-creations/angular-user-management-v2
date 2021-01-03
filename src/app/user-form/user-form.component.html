@@ -1,43 +1,52 @@
-<form #aForm="ngForm">
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <h2>Name</h2>
   <div>
     <label for="name">Full Name</label>
-    <input name="name" placeholder="Enter your full name" ngModel/>
+    <input name="name" 
+      placeholder="Enter your full name" 
+      [(ngModel)]="userInfo.name" 
+      required 
+      #nameField="ngModel" 
+      [class.field-error]="form.submitted && nameField.invalid"
+      (blur)="onBlur(nameField)"/>
     <span>(required)</span>
+    <div [hidden]="!form.submitted || nameField.valid" class="error" #err1>
+      Please Enter your name!!
+    </div>
   </div>
   <div>
     <label for="username">Username</label>
-    <input name="username" placeholder="Choose a username name" ngModel/>
+    <input name="username" placeholder="Choose a username name" [(ngModel)]="userInfo.username"/>
   </div>
   <h2>Address</h2>
   <div>
     <label for="street">Street</label>
-    <input name="street" ngModel/>
+    <input name="street" id="street" [(ngModel)]="userInfo.street" #aVar="ngModel" required/>
     <span>required</span>
   </div>
+  <h3>{{ nameField.valid }}</h3>
   <div>
     <label for="suite">Suite</label>
     <input name="suite" ngModel/>
   </div>
   <div>
     <label for="city">City</label>
-    <input name="city" ngModel/>
+    <input name="city" ngModel required/>
     <span>required</span>
   </div>
   <div>
     <label for="zipcode">Zip Code</label>
-    <input name="zipcode" ngModel/>
+    <input name="zipcode" ngModel required/>
     <span>required</span>
   </div>
   <div>
     <label for="geo">Geo Location</label>
     <input name="geo" ngModel/>
-    <span>required</span>
   </div>
   <h2>Company</h2>
   <div>
     <label for="company">Company</label>
-    <input name="company" ngModel/>
+    <input name="company" ngModel required/>
     <span>required</span>
   </div>
   <div>
@@ -48,7 +57,7 @@
     <label for="bs">BS</label>
     <input name="bs" ngModel/>
   </div>
-  <button (click)="runForm()">Save New User</button>
+  <button type="submit">Save New User</button>
 </form>
 
-{{ aForm.form | json }}
+{{ form.value | json }}
