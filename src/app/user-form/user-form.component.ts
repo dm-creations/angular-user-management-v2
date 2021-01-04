@@ -50,8 +50,8 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  onSubmit(form: NgForm) {
-
+  onSubmit() {
+    console.log("form")
     this.dataService.postForm(this.userInfo).subscribe(
       result => console.log('success... ', result),
       error => console.log('error... ', error)
