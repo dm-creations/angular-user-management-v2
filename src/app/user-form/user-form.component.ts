@@ -24,9 +24,10 @@ export class UserFormComponent implements OnInit {
     bs: 'string'
   }
 
-  userInfo = this.TemplateUserInfo;
-  constructor(private dataService: DataService) {}
-  
+  userInfo : UserInfo = { ...this.TemplateUserInfo };
+  postError = false;
+  postErrorMessage = '';
+
   testPost = {
   method: 'POST',
   body: JSON.stringify({
@@ -39,6 +40,8 @@ export class UserFormComponent implements OnInit {
   },
 }
 
+ constructor(private dataService: DataService) {}
+
   ngOnInit() {
   }
 
@@ -50,20 +53,31 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log("form")
-    this.dataService.postForm(this.userInfo).subscribe(
+  onHttpError(errorResponse: any) {
+    console.log('error: ', errorResponse);
+    this.postError = true;
+    this.postErrorMessage = errorResponse.error.errorMessage;
+  }
+
+  onSubmit(form) {
+    this.dataService.postForm(form.value).subscribe(
       result => console.log('success... ', result),
       error => console.log('error... ', error)
     );
   }
 
   onSubmit2(form: NgForm) {
-    console.log("Form is Valid... ", form.valid);
-    this.dataService.postForm(this.userInfo).subscribe(
-      result => console.log('success... ', result),
-      error => console.log('error... ', error)
-    );
-  }
+    console.log("Form is Valid yeah... ", form.valid);
 
+    if (form.valid) {
+      this.dataService.postForm2(this.userInfo).subscribe(
+      result => console.log('success... ', result),
+      error => this.onHttpError(error)
+      );
+    }
+    else {
+      this.postError = true;
+      this.postErrorMessage = "Please fix the above error(s)"
+    }
+  }
 }

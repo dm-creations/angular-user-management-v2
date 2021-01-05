@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="onSubmit()">
+<form #form="ngForm" (ngSubmit)="onSubmit2(form)">
   <h2>Name</h2>
   <div [hidden]="!form.submitted || nameField.valid" class="error" #err1>
       Please Enter your name!!
@@ -64,6 +64,9 @@
   <div>
     <label for="bs">BS</label>
     <input name="bs" ngModel/>
+  </div>
+  <div [hidden]="!postError" class="alert alert-danger" #err1>
+       {{ postErrorMessage }}
   </div>
   <button type="submit">Save New User</button>
 </form>

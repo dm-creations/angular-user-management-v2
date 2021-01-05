@@ -9,17 +9,8 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
     postForm(userInfo): Observable<any> {
-    // console.log(userInfo.name)
-    // return of(userInfo)
 
-  //   var body = {
-  //   method: 'POST',
-  //   body: userInfo,
-  //   headers: {
-  //     'Content-type': 'application/json; charset=UTF-8',
-  //   },
-  // }
-    // let jsonBody = JSON.stringify(userInfo);
+    // The format of POST that JSONPlaceholder expects to see
     let response = {
       method: 'POST',
       body: userInfo,
@@ -27,7 +18,6 @@ export class DataService {
         'Content-type': 'application/json; charset=UTF-8',
       }
     }
-
 
     return this.http.post('https://jsonplaceholder.typicode.com/users', response)
 
