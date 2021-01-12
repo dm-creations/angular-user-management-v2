@@ -22,9 +22,9 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "customWebpackConfig": [
-              "./webpack.config.js"
-            ],
+            "customWebpackConfig": {
+              "path": "./webpack.config.js"
+            },
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -78,9 +78,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "customWebpackConfig": [
-              "./webpack.config.js"
-            ],
+            "customWebpackConfig": {
+              "path": "./webpack.config.js"
+            },
             "styles": [
               "styles.scss"
             ],
