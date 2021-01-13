@@ -15,13 +15,13 @@
         required 
         #nameField="ngModel"
         #nelem
-        class="align-right h-8"
+        class="h-8 w-11/12 mx-2"
         [class.field-error]="form.submitted && nameField.invalid"
         (blur)="onBlur(nameField, nelem)"/>
     </div>
     <div class="my-2">
       <label class="text-xl" for="username">Username</label>
-      <input name="username" placeholder="Choose a username name" [(ngModel)]="userInfo.username" class="h-8"/>
+      <input name="username" placeholder="Choose a username name" [(ngModel)]="userInfo.username" class="h-8 w-full"/>
     </div>
   </div>
   <div class="bg-gray-100 my-2 md:m-2">
@@ -31,26 +31,26 @@
       </div>
     <div class="my-2">
       <label class="text-xl" for="street">Street</label>
-      <input name="street" id="street" [(ngModel)]="userInfo.street" #streetField="ngModel" #addelem class="h-8" [class.field-error]="form.submitted && streetField.invalid" (blur)="onBlur(streetField, addelem)" required/>
       <span>*</span>
+      <input name="street" id="street" [(ngModel)]="userInfo.street" #streetField="ngModel" #addelem class="h-8 w-full" [class.field-error]="form.submitted && streetField.invalid" (blur)="onBlur(streetField, addelem)" required/>
     </div>
     <div class="my-2">
       <label class="text-xl" for="suite">Suite</label>
-      <input name="suite" ngModel class="h-8"/>
+      <input name="suite" ngModel class="h-8 w-full"/>
     </div>
     <div class="my-2">
       <label class="text-xl" for="city">City</label>
-      <input name="city" [(ngModel)]="userInfo.city" #cityField="ngModel" #cityelem class="h-8" [class.field-error]="form.submitted && cityField.invalid" (blur)="onBlur(cityField, cityelem)" required/>
       <span>*</span>
+      <input name="city" [(ngModel)]="userInfo.city" #cityField="ngModel" #cityelem class="h-8 w-full" [class.field-error]="form.submitted && cityField.invalid" (blur)="onBlur(cityField, cityelem)" required/>
     </div>
     <div class="my-2">
       <label class="text-xl" for="zipcode">Zip Code</label>
-      <input name="zipcode" [(ngModel)]="userInfo.zipcode" #zipcodeField="ngModel" #zipelem class="h-8" [class.field-error]="form.submitted && zipcodeField.invalid" (blur)="onBlur(zipcodeField, zipelem)" required/>
       <span>*</span>
+      <input name="zipcode" [(ngModel)]="userInfo.zipcode" #zipcodeField="ngModel" #zipelem class="h-8 w-full" [class.field-error]="form.submitted && zipcodeField.invalid" (blur)="onBlur(zipcodeField, zipelem)" required/>
     </div>
     <div class="my-2">
       <label class="text-xl" for="geo">Geo Location</label>
-      <input name="geo" ngModel class="h-8"/>
+      <input name="geo" ngModel class="h-8 w-full"/>
     </div>
   </div>
   <div class="bg-gray-100 my-2 md:m-2">
@@ -60,16 +60,16 @@
       </div>
     <div class="my-2">
       <label class="text-xl" for="company">Company</label>
-      <input name="company" [(ngModel)]="userInfo.company" #companyField="ngModel" #compelem class="h-8" [class.field-error]="form.submitted && companyField.invalid" (blur)="onBlur(companyField, compelem)" required/>
       <span>*</span>
+      <input name="company" [(ngModel)]="userInfo.company" #companyField="ngModel" #compelem class="h-8 w-full" [class.field-error]="form.submitted && companyField.invalid" (blur)="onBlur(companyField, compelem)" required/>
     </div>
     <div class="my-2">
       <label class="text-xl" for="catchphrase">Catchphrase</label>
-      <input name="catchphrase" ngModel class="h-8"/>
+      <input name="catchphrase" ngModel class="h-8 w-full"/>
     </div>
     <div class="my-2">
       <label class="text-xl" for="bs">BS</label>
-      <input name="bs" ngModel class="h-8"/>
+      <input name="bs" ngModel class="h-8 w-full"/>
     </div>
   </div>
   <div [hidden]="!postError" class="alert alert-danger" #err1>
