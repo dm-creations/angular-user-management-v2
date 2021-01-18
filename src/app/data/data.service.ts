@@ -6,8 +6,16 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({providedIn: 'root'})
 export class DataService {
 
+  allUsers
+
   constructor(private http: HttpClient) { }
 
+    getUsers() {
+      return this.http.get("https://jsonplaceholder.typicode.com/users")
+    }
+    updateUsers(data) {
+      this.allUsers = data
+    }
     postForm(userInfo): Observable<any> {
 
     // The format of POST that JSONPlaceholder expects to see

@@ -1,9 +1,9 @@
-<form #form="ngForm" (ngSubmit)="onSubmit2(form)" class="mx-2">
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="mx-2">
   <p class="text-base">Enter your details to become a user</p>
   <span class="text-right italic">You must fill in fields marked with *</span>
   <div class="relative bg-gray-100 my-2 px-2 py-1 md:m-2 md:py-2 rounded-lg shadow-md">
     <h2 class="text-2xl font-medium uppercase leading-normal">Name</h2>
-    <button class="absolute top-2 right-2 bg-green-400 text-white font-bold p-2 uppercase rounded shadow-md hover:bg-green-700">Autofill</button>
+    <div class="absolute top-2 right-2 bg-green-400 text-white font-bold p-2 uppercase rounded shadow-md hover:bg-green-700" (click)="autoFillForm()">Autofill</div>
     <div [hidden]="!form.submitted || nameField.valid" class="error" #err1>
         Please Enter your name!!
     </div>
@@ -26,6 +26,17 @@
     </div>
   </div>
   <div class="bg-gray-100 px-2 py-1 my-2 md:m-2 rounded-lg shadow-md">
+    <h2 class="text-2xl font-medium uppercase leading-normal">Phone Number</h2>
+    <div [hidden]="!form.submitted || phoneField.valid" class="error" #err1>
+        Please Enter a valid phone number !!
+      </div>
+    <div class="my-2">
+      <label class="text-md" for="phone">Phone</label>
+      <span [class.text-red-700]="form.submitted && phoneField.invalid">*</span>
+      <input name="phone" id="phone" [(ngModel)]="userInfo.phone" #phoneField="ngModel" #phoneelem class="h-8 w-full rounded-lg" [class.field-error]="form.submitted && phoneField.invalid" (blur)="onBlur(phoneField, phoneelem)" required/>
+    </div>
+  </div>
+  <div class="bg-gray-100 px-2 py-1 my-2 md:m-2 rounded-lg shadow-md">
     <h2 class="text-2xl font-medium uppercase leading-normal">Address</h2>
     <div [hidden]="!form.submitted || (streetField.valid && cityField.valid && zipcodeField.valid )" class="error" #err1>
         Please Enter a valid address (see red boxes)!!
@@ -37,7 +48,7 @@
     </div>
     <div class="my-2">
       <label class="text-md" for="suite">Suite</label>
-      <input name="suite" ngModel class="h-8 w-full rounded-lg"/>
+      <input name="suite" [(ngModel)]="userInfo.suite" class="h-8 w-full rounded-lg"/>
     </div>
     <div class="my-2">
       <label class="text-md" for="city">City</label>
@@ -50,8 +61,8 @@
       <input name="zipcode" [(ngModel)]="userInfo.zipcode" #zipcodeField="ngModel" #zipelem class="h-8 w-full rounded-lg" [class.field-error]="form.submitted && zipcodeField.invalid" (blur)="onBlur(zipcodeField, zipelem)" required/>
     </div>
     <div class="my-2">
-      <label class="text-md" for="geo">Geo Location</label>
-      <input name="geo" ngModel class="h-8 w-full rounded-lg"/>
+      <label class="text-md" for="geolat">Geo Location</label>
+      <input name="geolat" [(ngModel)]="userInfo.geo" class="h-8 w-full rounded-lg"/>
     </div>
   </div>
   <div class="bg-gray-100 px-2 py-1 my-2 md:m-2 rounded-lg shadow-md">
@@ -66,11 +77,11 @@
     </div>
     <div class="my-2">
       <label class="text-md" for="catchphrase">Catchphrase</label>
-      <input name="catchphrase" ngModel class="h-8 w-full rounded-lg"/>
+      <input name="catchphrase" [(ngModel)]="userInfo.catchphrase" class="h-8 w-full rounded-lg"/>
     </div>
     <div class="my-2">
       <label class="text-md" for="bs">BS</label>
-      <input name="bs" ngModel class="h-8 w-full rounded-lg"/>
+      <input name="bs" [(ngModel)]="userInfo.bs" class="h-8 w-full rounded-lg"/>
     </div>
   </div>
   <div [hidden]="!postError" class="alert alert-danger text-red-600 p-2" #err1>

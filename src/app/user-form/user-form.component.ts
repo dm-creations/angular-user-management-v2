@@ -1,30 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { UserInfo } from '../data/user-info';
-import { DataService } from '../data/data.service'
+import { DataService } from '../data/data.service';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
+
 export class UserFormComponent implements OnInit {
 
   TemplateUserInfo: UserInfo = {
     id: 1,
     name: '',
-    username: 'OhDear',
+    username: '',
     street: '',
-    suite: 'string',
+    suite: '',
     city: '',
     zipcode: '',
     company: '',
-    geo: 'string',
-    catchphrase: 'string',
-    bs: 'string'
+    geo: '',
+    phone: '',
+    catchphrase: '',
+    bs: ''
+  }  
+
+  autoFillInfo: UserInfo = {
+    id: 1,
+    name: 'Benjmin Gilbert',
+    username: 'BigG',
+    street: 'Linus Torvalds Street',
+    suite: '12B',
+    city: 'Manchester',
+    zipcode: 'M11 4TQ',
+    company: 'AI Breakers',
+    geo: '11.22323 , 88.23039',
+    phone: '0800 50 50 50',
+    catchphrase: 'Once an AI Breaker...',
+    bs: 'Doing the thing'
   }
 
   userInfo : UserInfo = { ...this.TemplateUserInfo };
+  autoInfo : UserInfo = { ...this.autoFillInfo };
   postError = false;
   postErrorMessage = '';
 
@@ -45,10 +63,16 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  autoFillForm() {
+    this.userInfo = this.autoFillInfo; 
+  }
+
   onBlur(field: NgModel,elem: any) {
-    console.log("field.valid...", field.valid)
+    // console.log("field.valid...", field.valid)
+    // console.log("field.invalid...", field.invalid)
+    elem.classList.remove('field-error')
     if (field.valid === false) {
-      elem.className += ' field-error'
+      elem.classList.add('field-error')
       console.log(elem.className)
     }
   }

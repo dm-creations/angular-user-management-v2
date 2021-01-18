@@ -1,1 +1,41 @@
-<button class="block bg-orange-400 text-white font-bold p-3 my-2 mx-auto">View All Users</button>
+<button class="block bg-purple-400 text-white font-bold p-3 my-2 mx-auto" (click)="getUsers()">View All Users</button>
+<div class="grid grid-cols-1 gap-y-2 mx-2">
+    <div *ngFor="let user of allUsers">
+        <div class="user bg-gray-200 rounded-lg shadow-md">
+            <div class="p-2">
+                <div class="flex">
+                    <div class="relative w-1/3">
+                        <img class="" src="https://raw.githubusercontent.com/dm-creations/angular-simple-user-management/master/src/assets/svg/person.svg">
+                        <span class="absolute top-0 bg-blue-500 w-6 h-6 rounded-full text-center text-white font-bold">{{ user.id }}</span>
+                    </div>
+                    <div class="fields">
+                        <p class="title">{{ user.name }}</p>
+                        <p>Username: {{ user.username }}</p>
+                        <p>Phone: {{ user.phone }}</p>
+                        <p>Company: {{ user.company.name }}</p>
+                        <p>Catchphrase: {{ user.company.catchPhrase }}</p>
+                        <div>
+                            <div class="flex">
+                                <div>
+                                    <p>Address: </p>
+                                </div>
+                                <div>
+                                    <p>{{ user.address.street }}</p>
+                                    <p>{{ user.address.suite }}</p>
+                                    <p>{{ user.address.city }}</p>
+                                    <p>{{ user.address.zipcode }}</p>
+                                </div> 
+                            </div>
+                            <div class="flex">
+                                <p>Location: </p>
+                                <p>{{ user.address.geo.lat }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="bg-red-500 m-1 p-1 rounded text-white font-bold" title="delete user" (click)="delete(user)">Delete</button>
+                <button class="bg-blue-400 m-1 p-1 rounded text-white font-bold" title="edit user" (click)="editUser()">Edit User</button>
+            </div>
+        </div>
+    </div>
+</div>
