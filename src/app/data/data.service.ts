@@ -6,12 +6,27 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({providedIn: 'root'})
 export class DataService {
 
+  // Public Properties that the Service shares
   allUsers
+
+  // Needs to be form object added
+  updatedUsers = false;
 
   constructor(private http: HttpClient) { }
 
+    runFunction(body) { 
+      console.log('run function');
+      this.allUsers = body;
+      console.log(this.allUsers);
+
+    }
     getUsers() {
-      return this.http.get("https://jsonplaceholder.typicode.com/users")
+      // if (this.updatedUsers != false) {
+      //   return this.updatedUsers;
+      // }
+      // else {
+        return this.http.get("https://jsonplaceholder.typicode.com/users")
+      // }
     }
     updateUsers(data) {
       this.allUsers = data

@@ -45,6 +45,8 @@ export class UserFormComponent implements OnInit {
   autoInfo : UserInfo = { ...this.autoFillInfo };
   postError = false;
   postErrorMessage = '';
+  postSuccess = false;
+  postSuccessMessage = '';
 
   testPost = {
   method: 'POST',
@@ -84,10 +86,28 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit(form) {
-    this.dataService.postForm(form.value).subscribe(
-      result => console.log('success... ', result),
-      error => console.log('error... ', error)
-    );
+    if (form.valid) {
+      this.dataService.postForm(form.value).subscribe(
+        result => {
+          this.postError = false;
+          this.postErrorMessage = '';
+          this.postSuccess = true;
+          this.postSuccessMessage = 'Form Submitted! Click on Update All Users to view';
+
+          // this.dataService.allUsers.push(result);
+          console.log('success... ', result.body);
+          // add response Object to existing allUsers Object
+          this.dataService.runFunction(result.body);
+      },
+        error => console.log('error... ', error)
+      );
+    }
+    else {
+      this.postSuccess = false;
+      this.postSuccessMessage = '';
+      this.postError = true;
+      this.postErrorMessage = "Please fix the above error(s)"
+    }
   }
 
   onSubmit2(form: NgForm) {

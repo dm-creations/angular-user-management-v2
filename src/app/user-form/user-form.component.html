@@ -84,6 +84,9 @@
       <input name="bs" [(ngModel)]="userInfo.bs" class="h-8 w-full rounded-lg"/>
     </div>
   </div>
+  <div [hidden]="!postSuccess" class="text-green-600 p-2" #err1>
+       {{ postSuccessMessage }}
+  </div>
   <div [hidden]="!postError" class="alert alert-danger text-red-600 p-2" #err1>
        {{ postErrorMessage }}
   </div>

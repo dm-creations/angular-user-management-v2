@@ -1,6 +1,6 @@
-<button class="block bg-purple-400 text-white font-bold p-3 my-2 mx-auto" (click)="getUsers()">View All Users</button>
+<button class="block bg-purple-400 text-white font-bold p-3 my-2 mx-auto" (click)="getUsers()">View/Update All Users</button>
 <div class="grid grid-cols-1 gap-y-2 mx-2">
-    <div *ngFor="let user of allUsers">
+    <div *ngFor="let user of updatedUsers">
         <div class="user bg-gray-200 rounded-lg shadow-md">
             <div class="p-2">
                 <div class="flex">
